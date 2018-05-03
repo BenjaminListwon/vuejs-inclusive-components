@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Button - Switch 1</title>
+</head>
+<body>
+
+<h2>Notifications</h2>  
+<ul>  
+  <li>
+    <span id="notify-email">Notify by email</span> 
+    <button aria-labelledby="notify-email" aria-pressed="false" class="switch">
+      <span>on</span>
+      <span>off</span>
+    </button>
+  </li>
+  <li>
+    <span id="notify-sms">Notify by SMS</span>
+    <button aria-labelledby="notify-sms" aria-pressed="false" class="switch">
+      <span>on</span>
+      <span>off</span>
+    </button>
+  </li>
+  <li>
+    <span id="notify-fax">Notify by fax</span>
+    <button aria-labelledby="notify-fax" aria-pressed="false" class="switch">
+      <span>on</span>
+      <span>off</span>
+    </button>
+  </li>
+  <li>
+    <span id="notify-smoke">Notify by smoke signal</span> 
+    <button aria-labelledby="notify-smoke" aria-pressed="false" class="switch">
+      <span>on</span>
+      <span>off</span>
+    </button>
+  </li>
+</ul>  
+
+<script type="text/javascript">
+const buttonList = document.querySelectorAll('[aria-pressed]');
+
+console.log(buttonList);
+
+for (var i = 0; i < buttonList.length; i++) {
+  buttonList[i].addEventListener('click', (e) => {  
+    let pressed = e.target.getAttribute('aria-pressed') === 'true';
+    e.target.setAttribute('aria-pressed', String(!pressed));
+  });
+}
+</script>
+
+<style type="text/css">
+html, body {
+  font-family: sans-serif;
+}
+
+button {  
+  color: black;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  padding: 1em 2em;
+  border: 3px solid #000;
+}
+
+button[aria-pressed="true"] :first-child, 
+button[aria-pressed="false"] :last-child {
+  background: #000;
+  color: #f1f227;
+}
+
+button.switch {
+  padding: 0;
+}
+
+button.switch span {
+  display: inline-block;
+  padding: 0 0.5em;
+  line-height: 2em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* For demo only */
+li {
+  padding: 1rem 0;
+}
+</style>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Toggle Button</title>
+</head>
+<body>
+
+<button type="button" aria-pressed="true">  
+  Notify by email
+</button>
+
+<script type="text/javascript">
+const toggle = document.querySelector('[aria-pressed]');
+
+toggle.addEventListener('click', (e) => {  
+  let pressed = e.target.getAttribute('aria-pressed') === 'true';
+  e.target.setAttribute('aria-pressed', String(!pressed));
+});
+</script>
+
+<style type="text/css">
+button {  
+  color: white;
+  background-color: #000;
+  border-radius: 0.5rem;
+  padding: 1em 2em;
+  border: none;
+}
+
+[aria-pressed] {
+  position: relative;
+  top: -0.25rem;
+  left: -0.25rem;
+  box-shadow: 0.125em 0.125em 0 #fff, 
+              0.25em 0.25em #000;
+}
+
+[aria-pressed="true"] {
+  box-shadow: inset 0 0 0 0.15rem #000, 
+              inset 0.25em 0.25em 0 #fff;
+}
+
+/* Remove the default outline and 
+add the outset shadow */  
+[aria-pressed]:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.25rem yellow;
+}
+
+/* Make sure both the inset and 
+outset shadow are present */  
+[aria-pressed="true"]:focus {
+  box-shadow: 0 0 0 0.25rem yellow,
+              inset 0 0 0 0.15rem #000, 
+              inset 0.25em 0.25em 0 #fff;  
+}
+
+
+</style>
+
+</body>
+</html>
+
