@@ -42,10 +42,26 @@ const buttonList = document.querySelectorAll('[aria-pressed]');
 
 console.log(buttonList);
 
+
+function findCurrentOrAncestor (el, pattern) {
+  let elName = el.tagName.toLowerCase();
+  if (elName === 'body') {
+    return false;
+  } else if (elName === pattern) {
+    return el;
+  } else {
+    return findCurrentOrAncestor(el.parentNode, pattern);
+  }
+}
+
+
+
+
 for (var i = 0; i < buttonList.length; i++) {
   buttonList[i].addEventListener('click', (e) => {  
-    let pressed = e.target.getAttribute('aria-pressed') === 'true';
-    e.target.setAttribute('aria-pressed', String(!pressed));
+    let elem = findCurrentOrAncestor(e.target, 'button');
+    let isPressed = elem.getAttribute('aria-pressed') === 'true';
+    elem.setAttribute('aria-pressed', String(!isPressed));
   });
 }
 </script>
